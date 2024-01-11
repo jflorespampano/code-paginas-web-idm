@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		ul {
+		list-style-type: none; /*sin la marca de la lista (el punto)*/
+		margin: 0;
+		padding: 0;
+		overflow: hidden; /* no mostrar barra de desplazamiento*/
+		border: 1px solid #e7e7e7;
+		background-color: #f3f3f3;
+		}
+
+		li {
+		float: left;
+		}
+
+		li a {
+		display: block; /*despliega la opcion en modo de una caja ocupando todo su espacio*/
+		color: #666;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		}
+
+		li a:hover:not(.active) { /*cuando el cursos pasa sobre las opciones no activas*/
+		background-color: #ddd;
+		}
+
+		li a.active { /*la opcion activa*/
+		color: white;
+		background-color: #4CAF50;
+		}
+	</style>
+</head>
+<body>
+
+	<ul>
+		<li><a id="op_1" class="active" href="#home">Alta alumno</a></li>
+		<li><a id="op_2" href="#news">Buscar alumno</a></li>
+		<li><a id="op_3" href="#contact">Contacto</a></li>
+		<li><a id="op_4" href="#about">Acerca de</a></li>
+	</ul>
+	
+
+	<div id="div_op_1" style="display:block;">
+		<p>opcion 1</p>
+		<div id=contenidoOp1>
+			<form>
+				<label for="txtMatricula">Matricula</label>
+				<input id="txtMatricula" type="text" placeholder="matricula">
+				<label for="txtNombre">Nombre</label>
+				<input id="txtNombre" type="text" placeholder="escribe tu nombre">
+				<label for="txtEdad">Edad</label>
+				<input id="txtEdad" type="text" placeholder="edad">
+				<select id="cmbCarrera" name="cmbCarrera">
+					<option value="li">licenciatura en informatica</option>
+					<option value="ico">ingenieria en sistemas</option>
+					<option value="idm">ingenieria en diseño multimedia</option>
+					<input id="btnAlta" type="button" value="Agregar Alumno">
+				</select>
+			</form>
+		</div>
+	</div>
+	<div id="div_op_2" style="display:none;">
+		<p>opcion 2</p>
+		<form>
+			<label for="txtMatricula">Matricula</label>
+			<input id="txtMatricula" type="text" placeholder="matricula">
+			<input id="btnBuscar" type="button" value="buscar">
+		</form>
+	</div>
+	<div id="div_op_3" style="display:none;">
+		<p>opcion 3</p>
+		<p>
+			<center>
+				Correo: micorreo@correo <br>
+				direccióm: mi direccion <br>
+				telefono: mitelefono
+			</center>
+		</p>
+	</div>
+	<div id="div_op_4" style="display:none;"><p>opcion 4</p></div>
+	<script>
+		window.onload=function(){
+			document.getElementById("op_1").addEventListener("click",function(){
+				document.getElementById("op_2").classList.remove("active");
+				document.getElementById("op_3").classList.remove("active");
+				document.getElementById("op_4").classList.remove("active");
+				document.getElementById("op_1").classList.add("active");
+				document.getElementById("div_op_1").style['display']="block";
+				document.getElementById("div_op_3").style['display']="none";
+				document.getElementById("div_op_4").style['display']="none";
+				document.getElementById("div_op_2").style['display']="none";
+			});
+			document.getElementById("op_2").addEventListener("click",function(){
+				document.getElementById("op_1").classList.remove("active");
+				document.getElementById("op_3").classList.remove("active");
+				document.getElementById("op_4").classList.remove("active");
+				document.getElementById("op_2").classList.add("active");
+				document.getElementById("div_op_1").style['display']="none";
+				document.getElementById("div_op_3").style['display']="none";
+				document.getElementById("div_op_4").style['display']="none";
+				document.getElementById("div_op_2").style['display']="block";
+			});
+			document.getElementById("op_3").addEventListener("click",function(){
+				document.getElementById("op_1").classList.remove("active");
+				document.getElementById("op_2").classList.remove("active");
+				document.getElementById("op_4").classList.remove("active");
+				document.getElementById("op_3").classList.add("active");
+				document.getElementById("div_op_1").style['display']="none";
+				document.getElementById("div_op_2").style['display']="none";
+				document.getElementById("div_op_4").style['display']="none";
+				document.getElementById("div_op_3").style['display']="block";
+			});
+		}
+	</script>
+</body>
+
+</html>

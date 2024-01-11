@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+        label{
+            width: 100%;
+            padding: 12px 20px;
+            display: block;
+        }
+        .linea{
+            display: inline;
+        }
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=button] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=button]:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 50%;
+            margin: auto; /*centra el formulario*/
+        }
+	</style>
+</head>
+<body>
+    <form class="insertar_datos">
+        <label for="txtMatricula">Matricula</label>
+        <input id="txtMatricula" type="text" placeholder="matricula">
+        <label for="txtNombre">Nombre</label>
+        <input id="txtNombre" type="text" placeholder="escribe tu nombre">
+        <label for="txtEdad">Edad</label>
+        <input id="txtEdad" type="text" placeholder="edad">
+        <label>Sexo</label>
+        <label class="linea" for="brmujer"></label><input type="radio" id="brmujer" name="empleoactual" value="femenino" checked>Femenino
+        <label class="linea" for="brhombre"></label><input type="radio" id="brhombre" name="empleoactual" value="masculino">Masculino
+        <label class="linea" for="brmilenial"></label><input type="radio" id="brmilenial" name="empleoactual" value="milenial">LGBT
+        <label for="cmbCarrera">Carrera</label>
+        <select id="cmbCarrera" name="cmbCarrera">
+            <option value="li">licenciatura en informatica</option>
+            <option value="ico">ingenieria en sistemas</option>
+            <option value="idm">ingenieria en diseño multimedia</option>
+        </select>
+        <label>Lenguajes que le gustan:</label>
+        <label class="linea" ><input type="checkbox" id="chk1" name="c" value="c" checked>C</label>
+        <label class="linea" ><input type="checkbox" id="chk2" name="cpp" value="cpp" >C++</label>
+        <label class="linea" ><input type="checkbox" id="chk3" name="java" value="java" >Java</label>
+        <label class="linea" ><input type="checkbox" id="chk4" name="python" value="python" >Python</label>
+        <input id="btnAlta" type="button" value="Agregar Alumno">
+    </form>
+	
+</body>
+
+</html>
