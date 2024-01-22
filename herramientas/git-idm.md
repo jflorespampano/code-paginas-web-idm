@@ -20,5 +20,7 @@ git init
 #cambiar el nombre de la rama principal a main
 git branch -m main
 git remote add origin https://github.com...
+#por ejemplo:
+git remote add origin https://github.com/jflorespampano/code-paginas-web-idm.git
 #bajar el proyecto
 git pull origin main
