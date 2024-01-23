@@ -16,7 +16,7 @@
 			<form id="frmPersona" class="w3-container">
 			  <p>
 			  <label>First Name</label>
-			  <input name="nombre" class="w3-input" type="text"></p>
+			  <input name="nombre" class="w3-input" type="text" required></p>
 			  <p>
 			  <label>Last Name</label>
 			  <input name="apellido" class="w3-input" type="text"></p>
@@ -24,7 +24,7 @@
 			  <label>Email</label>
 			  <input name="mail" class="w3-input" type="text"></p>
 			  <p>
-				<input type="button" id="btnEnviar" value="enviar">
+				<input type="submit" id="btnEnviar" value="enviar">
 			  </p>
 			</form>
 		</div>
@@ -387,7 +387,8 @@
 		cargaTabla()
 
 		let btn=document.querySelector("#btnEnviar")
-		btn.addEventListener('click',function(){
+		btn.addEventListener('click',function(e){
+			e.preventDefault
 			frm=document.querySelector("#frmPersona")
 			const formData=new FormData(frm)
 			console.log("for of")
