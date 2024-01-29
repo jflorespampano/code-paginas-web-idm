@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu W3.CSS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+	<div class="w3-row">
+	  <div class="w3-col m5 l4">
+		<div class="w3-container w3-padding">
+			<div class="w3-container w3-green">
+			  <h2>Formulario</h2>
+			</div>
+			<form id="frmPersona" class="w3-container">
+			  <p>
+			  <label>First Name</label>
+			  <input name="nombre" class="w3-input" type="text" required></p>
+			  <p>
+			  <label>Last Name</label>
+			  <input name="apellido" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Email</label>
+			  <input name="mail" class="w3-input" type="text"></p>
+			  <p>
+				<input type="submit" id="btnEnviar" value="enviar">
+			  </p>
+			</form>
+		</div>
+	  </div>
+	  <div class="w3-col m7 l8">
+		<div class="w3-row w3-padding">
+			<div class="w3-bar w3-blue">
+			<a href="#" class="w3-bar-item w3-button">Home</a>
+			<a href="#" class="w3-bar-item w3-button">Link 1</a>
+			<a href="#" class="w3-bar-item w3-button">Link 2</a>
+			<a href="#" class="w3-bar-item w3-button">Link 3</a>
+		</div>
+		<div class="w3-row">
+			<div class="w3-container">
+			  <h2>Tabla con bordes</h2>
+			  <table class="w3-table w3-striped w3-bordered">
+				<thead>
+					<tr>
+					  <th>id</th>
+					  <th>nombre</th>
+					  <th>estado</th>
+					  <th>carrera</th>
+					</tr>
+				</thead>
+				<tbody id="tablaDatos">
+
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		
+	</div>
+	  </div>
+	</div>
+	
+
+</body>
+<script>
+	
+	function cargaTabla(){
+		fetch('http://localhost:3000/ico')
+		.then((resp)=>{
+			if(resp.ok){
+				resp.json()
+				.then(datos=>{
+					const tbody=document.querySelector("#tablaDatos")
+					let s=''
+					datos.forEach((value)=>{
+						s+=`<tr>
+								<td>${value.id}</td>
+								<td>${value.nombre}</td>
+								<td>${value.estado}</td>
+								<td>${value.carrera}</td>
+							</tr>
+							`
+					})
+					console.log("s= ",s)
+					tbody.innerHTML=s
+				})
+			}else{
+				console.log("no se recibieron datos")
+			}
+		}
+		)
+		.catch((error)=>{
+			console.log(error)
+		})
+	}
+	
+	window.onload=function(){
+		cargaTabla()
+
+		let btn=document.querySelector("#btnEnviar")
+		btn.addEventListener('click',function(e){
+			e.preventDefault
+			frm=document.querySelector("#frmPersona")
+			const formData=new FormData(frm)
+
+			formData.append("username", "Chris");
+			
+			//json
+			const dj=Object.fromEntries(formData)
+			console.log("json:",JSON.stringify(dj))
+			let output=""
+			for (const [key, value] of formData) {
+				output += `${key}: ${value}\n`;
+			}
+			console.log("form data:",output)
+		})
+	}
+	
+</script>
+</html>

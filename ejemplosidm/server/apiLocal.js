@@ -1,3 +1,4 @@
+const { createReadStream } = require ('fs')
 const http = require('http');
 
 const alumnos = [
@@ -20,8 +21,9 @@ const alumnos = [
 
 http.createServer((req, res) => {
     if (req.url == '/') {
-        res.writeHead(200, { 'Content-Type': 'text/json' });
-        res.end(JSON.stringify(alumnos));
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        createReadStream('menu2.html').pipe(res)
+
     } else if (req.url == '/activo') {
         activos(res);
     } else if (req.url == '/ico') {
