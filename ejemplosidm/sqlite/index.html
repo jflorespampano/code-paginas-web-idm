@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mensajes</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="w3-container">
+        <div class="w3-row">
+            <div class="w3-col l4 w3-padding">
+                <div class="w3-panel w3-cyan w3-padding-16">
+                    <div>
+                        <div class="w3-panel w3-blue w3-padding w3-center">
+                            Datos de Post
+                        </div>
+                        <form action="#" id="miformulario" class="w3-container w3-border w3-padding">
+                            <label for="id">ID</label>
+                            <input type="text" class="w3-input" id="id" name="id" placeholder="id"><br>
+                            <label for="userId">User ID</label>
+                            <input type="text" class="w3-input" id="userId" name="userId" placeholder="userId"><br>
+                            <label for="title">Title</label>
+                            <input type="text" class="w3-input" id="title" name="title" placeholder="title"><br>
+                            <input type="text" class="w3-input" id="body" name="body" placeholder="body"><br>
+                            <input type="button" class="w3-button w3-blue" value="agregar" id="btnAgregar">
+                            <input type="button" class="w3-button w3-blue" value="actualizar" id="btnActualizar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col l8 w3-padding">
+                <div class="w3-panel w3-cyan w3-padding-16">
+                    Datos existentes
+                </div>
+                <table class="w3-table-all">
+                    <thead>
+                        <tr>
+                            <td>id</td>
+                            <td>UserId</td>
+                            <td>titulo</td>
+                            <td>Cuerpo</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_datos">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!-- <input type="button" onclick="miFuncion()" value="llenar tabla"> -->
+</body>
+<script>
+    let datos = [];
+    function cargaDatos() {
+        let s = "";
+        datos.forEach(element => {
+            s += `
+                <tr>
+                <td>${element.id}</td>
+                <td>${element.userId}</td>
+                <td>${element.title}</td>
+                <td>${element.body}</td>
+                </tr>
+            `;
+        });
+        document.querySelector("#tbl_datos").innerHTML = s;
+    }
+
+    function leeJsonDesdeApiRest() {
+        fetch("http://localhost:3000/todos")
+            .then(function (data) {
+                if (data.ok) {
+                    data.json()
+                        .then(function (datosjson) {
+                            datos = datosjson;
+                            cargaDatos();
+                        });
+                } else {
+                    console.log("estado de la respuesta del servidor  NO ok");
+                }
+            });
+    }
+    window.onload = function () {
+        leeJsonDesdeApiRest();
+        let btn = document.querySelector("#btnAgregar");
+        btn.addEventListener('click', function () {
+            console.log("listener insert")
+            const dataform = new FormData(document.getElementById('miformulario'));
+            const data = new URLSearchParams(dataform);
+            const obj = Object.fromEntries(dataform);
+            console.log(obj);
+            fetch('http://localhost:3000/inserta', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                // body: 'id=1&userId=1&title=luisito&body=rosales'
+                body: data
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                //mostramos en consola la respuiesta del servidor a la solicitus de alta
+                console.log(JSON.stringify(json));
+            });
+        })
+        //
+        btn = document.querySelector("#btnActualizar");
+        btn.addEventListener('click', function () {
+            console.log("listener update")
+            const dataform = new FormData(document.getElementById('miformulario'));
+            const data = new URLSearchParams(dataform);
+            const obj = Object.fromEntries(dataform);
+            console.log(obj);
+            fetch('http://localhost:3000/actualiza', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                // body: 'id=1&userId=1&title=luisito&body=rosales'
+                body: data
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                //mostramos en consola la respuiesta del servidor a la solicitus de alta
+                console.log(JSON.stringify(json));
+            });
+        })
+    };
+</script>
+
+</html>
