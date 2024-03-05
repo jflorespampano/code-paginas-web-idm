@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<style></style>
+</head>
+<body>
+	<div id="div_trabajo">
+        <h2>Enviar datos a php con fetch datos como json desde un formulario</h2>
+        <form id="frm_editar">
+            <label for="p_id">id</label>
+            <input type="text" id="p_id" name="id">
+            <label for="p_nombre">nombre</label>
+            <input type="text" id="p_nombre" name="nombre">
+            <label for="p_apellido">apellido</label>
+            <input type="text" id="p_apellido" name="apellido">
+            <label for="p_edad">edad</label>
+            <input type="number" id="p_edad" name="edad">
+        </form>
+		<input type="button" id="btn_enviarjson" value="inserta">
+		<p id="mip"></p>
+	</div>
+	<script>
+		window.onload=function(){
+			document.getElementById("btn_enviarjson").onclick = function(){
+                const frm=document.querySelector("#frm_editar")
+                const formData=new FormData(frm)
+                const data=Object.fromEntries(formData)
+                fetch('recibeJson.php',{
+                    method: 'post',
+                    headers: {'Content-Type':'application/json'},
+                    body:JSON.stringify(data)
+                }).then(function(returnedValue) {
+                    if(returnedValue.ok){
+                        console.log("operacion correcta");
+                        returnedValue.text().then((txt)=>{
+                            console.log('muestro respuesta: ', txt);
+                            document.write('recibo de regreso: ',txt);
+                        });
+                    }
+                }).catch(function(err) {
+                    console.log(err);
+                });
+            }
+		};
+	</script>
+</body>
+</html>
