@@ -8,8 +8,10 @@ if(! empty($_GET)){
     $nombre=(isset($_GET["nombre"])?$_GET["nombre"]:"");
     $apellido=(isset($_GET["apellido"])?$_GET["apellido"]:"");
     $edad=(isset($_GET["edad"])?$_GET["edad"]:"No se recibiom edad");
+    http_response_code(200);
     echo $movimiento.",".$id.",".$nombre.",".$apellido.",".$edad;
 }else{
+    http_response_code(400);
     echo "sin datos recibidos";
 }
 exit();

@@ -37,7 +37,11 @@
                 try {
                     const data=await fetch(request)
                     const txt=await data.text()
-                    document.write('recibo de regreso: ',txt);
+                    if(data.ok){
+                        document.write('Ok recibo de regreso: ',txt);
+                    }else{
+                        document.write('Error : ',txt);
+                    }
                 } catch (error) {
                     document.write("error en la solicitud "+error)
                 }
