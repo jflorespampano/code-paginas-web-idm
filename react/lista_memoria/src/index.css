@@ -1,0 +1,40 @@
+.container{
+  display: block;
+  padding: 1rem;
+}
+.panel{
+  margin: 1rem;
+  display: flexbox;
+  padding: 10px;
+  background-color: aqua;
+}
+.contenido{
+  padding: 1rem;
+  background-color: beige;
+}
+button{
+  background-color: blue;
+  color: blanchedalmond;
+  width: 10%;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+table{
+  width: 50%;
+  border-color: blue;
+  background-color: blue;
+}
+thead>tr{
+  background-color: brown;
+}
+thead>tr>td{
+  color: white;
+}
+tr{
+  background-color:antiquewhite;
+}
+td{
+  padding: 10px;
+
+}
